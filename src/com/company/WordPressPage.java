@@ -55,7 +55,7 @@ public class WordPressPage {
 
         if (status == Status.Published)
             throw new NullPointerException("The page is already published");
-
+//te
     }
 
         // System.out.println(status);
