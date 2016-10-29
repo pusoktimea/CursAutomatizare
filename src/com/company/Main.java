@@ -9,26 +9,26 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-       // pageC3.status = WordPressPage.Status.Published;
-        //pageC4.isVisible = Boolean.FALSE;
+       //pageC3.status = WordPressPage.Status.Published;
+        pageC4.isVisible = Boolean.FALSE;
 
         System.out.println(pageC1.getStatus());
         pageC1.setStatus();
         //System.out.println(pageC1.isPublished());
-        pageC1.publishDate(5);
+       // pageC1.publishDate(5);
 
 
 
-        //System.out.println(pageC1);
-        //System.out.println(pageC2);
+        System.out.println(pageC1);
+        System.out.println(pageC2);
         pageC1.setParent(pageC1);
         pageC3.publishHour(2);
-       // System.out.println(pageC4);
-        pageC4.publishDate(5);
+       System.out.println(pageC4);
+     //   pageC4.publishDate(5);
 
-       // System.out.println(pageC3);
-       // System.out.println(pageC4);
-        //System.out.println(pageC4);
+       System.out.println(pageC3);
+       System.out.println(pageC4);
+        System.out.println(pageC4);
 
        int c = pageC2.getWordCount();
         System.out.println(c);
