@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class WordPressPage {
+public class WordPressPage implements iPublish {
 
-    public int id = 45,
+    public int id,
             parent = 6,
             order = 8,
             viewCount = 8;
@@ -24,16 +24,35 @@ public class WordPressPage {
         Published
     }
 
-    private Status status = Status.Draft;
+    public Status status = Status.Draft;
     public static int PageCount;
-    public static List<WordPressPage> pendingReviewPages = new ArrayList<>();;
+    public static List<WordPressPage> pendingReviewPages = new ArrayList<>();
+
+    public static ArrayList<WordPressPage> sortByTitle(ArrayList<WordPressPage> pagelist){
+        ArrayList<WordPressPage> listOfTitles = new ArrayList<>();
+        int x = 0;
+        while (pagelist.size() > 0) {
+            WordPressPage min = pagelist.get(0);
+            for (int i = 1; i < pagelist.size(); i++) {
+                if (min.title.compareTo(pagelist.get(i).title) > 0) {
+                    min = pagelist.get(i);
+                }
+            }
+            listOfTitles.add(min);
+            pagelist.remove(min);
+        }
+        return listOfTitles;
+    }
 
     public WordPressPage(String title, String c) {
-        String initTitle = this.title;
         this.title = title;
         content = c;
         PageCount++;
         id = PageCount;
+    }
+
+    public WordPressPage(int parent, int order, int viewCount, String title,  String content, boolean isVisible, Calendar dateFormat, String status){
+
     }
 
 
@@ -46,17 +65,26 @@ public class WordPressPage {
         //return title + "\n" + content;
     }
 
+    public void publish() {
+        status = Status.Published;
+    }
+
+    @Override
+    public void unpublish() {
+        status = Status.Draft;
+    }
+
     public void publishHour(int hours) {
         status = Status.Published;
         date_time.add(Calendar.HOUR_OF_DAY,hours);
     }
 
-    public void publishDate(int now) throws Exception {
-
-        if (status == Status.Published)
-            throw new NullPointerException("The page is already published");
-//te
-    }
+//    public void publishDate(int now) throws Exception {
+//
+//        if (status == Status.Published)
+//            throw new NullPointerException("The page is already published");
+////te
+//    }
         // 2nd Day
         // System.out.println(status);
         // System.out.println(date_time);
