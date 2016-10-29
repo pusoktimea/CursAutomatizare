@@ -26,7 +26,7 @@ public class WordPressPage {
 
     private Status status = Status.Draft;
     public static int PageCount;
-    public static List<WordPressPage> pendingReviewPages = new ArrayList<>();;
+    public static List<WordPressPage> pendingReviewPages = new ArrayList<>();
 
     public WordPressPage(String title, String c) {
         String initTitle = this.title;
@@ -51,12 +51,12 @@ public class WordPressPage {
         date_time.add(Calendar.HOUR_OF_DAY,hours);
     }
 
-    public void publishDate(int now) throws Exception {
+    //public void publishDate(int now) throws Exception {
 
-        if (status == Status.Published)
-            throw new NullPointerException("The page is already published");
-//te
-    }
+     //   if (status == Status.Published)
+     //       throw new NullPointerException("The page is already published");
+//
+   // }
         // 2nd Day
         // System.out.println(status);
         // System.out.println(date_time);
@@ -77,6 +77,27 @@ public class WordPressPage {
         for (int i = 0; i < pendingReviewPages.size(); i++) {
             System.out.println(pendingReviewPages.get(i));
         }
+    }
+
+    public static List<WordPressPage> sortByTitle (List<WordPressPage> wordPressPages) {
+        ArrayList<WordPressPage> sortedList = new ArrayList<>();
+
+        while (wordPressPages.size() > 0) {
+            WordPressPage min = wordPressPages.get(0);
+
+            for (int i = 0; i < wordPressPages.size(); i++) {
+
+                if (wordPressPages.get(i).title.compareTo(min.title) < 0)
+                    //System.out.println(wordPressPages.get(i).title.compareTo(min.title));
+                    min = wordPressPages.get(i);
+
+            }
+
+            sortedList.add(min);
+            wordPressPages.remove(min);
+        }
+            return sortedList;
+
     }
 
     public void setParent(WordPressPage page){

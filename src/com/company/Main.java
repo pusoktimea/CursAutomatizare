@@ -15,7 +15,7 @@ public class Main {
         System.out.println(pageC1.getStatus());
         pageC1.setStatus();
         //System.out.println(pageC1.isPublished());
-        pageC1.publishDate(5);
+        //pageC1.publishDate(5);
 
 
 
@@ -24,7 +24,7 @@ public class Main {
         pageC1.setParent(pageC1);
         pageC3.publishHour(2);
        // System.out.println(pageC4);
-        pageC4.publishDate(5);
+        //pageC4.publishDate(5);
 
        // System.out.println(pageC3);
        // System.out.println(pageC4);
