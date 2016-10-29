@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class WordPressPage {
+public class WordPressPage implements iPublish {
 
-    public int id = 45,
+    public int id,
             parent = 6,
             order = 8,
             viewCount = 8;
@@ -45,7 +45,6 @@ public class WordPressPage {
     }
 
     public WordPressPage(String title, String c) {
-        String initTitle = this.title;
         this.title = title;
         content = c;
         PageCount++;
@@ -64,6 +63,15 @@ public class WordPressPage {
     public String toString() {
         return (id + "\n" + parent + "\n" + order + "\n" + viewCount + "\n" + title + "\n" + content + "\n" + isVisible + "\n" + dateFormat.format(date_time.getTime())+ "\n" + status);
         //return title + "\n" + content;
+    }
+
+    public void publish() {
+        status = Status.Published;
+    }
+
+    @Override
+    public void unpublish() {
+        status = Status.Draft;
     }
 
     public void publishHour(int hours) {

@@ -18,6 +18,12 @@ public class WordpressPageTests {
     static WordPressPage page3 = new WordPressPage("bala", "content");
     static WordPressPage page4 = new WordPressPage("zala", "content");
 
+    static WordPressPost post1 = new WordPressPost("post1", "contentpost1");
+    static WordPressPost post2 = new WordPressPost("post2", "contentpost21");
+
+    static WordPressComments comm1 = new WordPressComments();
+    static WordPressComments comm2 = new WordPressComments("dolores.pente@altom.ro");
+
 
     @Test
     public void alphabeticalTitlesTest() {
@@ -43,4 +49,46 @@ public class WordpressPageTests {
         Assert.assertTrue("Nu e sortat poz 1", page3 == pageList.get(1));
         Assert.assertTrue("Nu e sortat poz 3", page4 == pageList.get(3));
     }
+
+
+    @Test
+    public void unicitateaIDurilorTest(){
+        System.out.println("Page 1 title " + page1.id);
+        System.out.println("Post 1 title " + post1.id);
+        System.out.println("Page 2 title " + page2.id);
+        System.out.println("Post 2 title " + post2.id);
+        Assert.assertEquals(page1.id, post1.id);
+        Assert.assertNotEquals(page1.id, page2.id);
+        Assert.assertNotEquals(post2.id, post1.id);
+        Assert.assertEquals(post2.id, page2.id);
+
+    }
+
+    @Test
+    public void isPagedPublishedTest(){
+        //Assert.assertTrue("Nu e published", page1.status == WordPressPage.Status.Published);
+        page2.publish();
+        Assert.assertTrue("Nu e published", page2.status == WordPressPage.Status.Published);
+    }
+
+    @Test
+    public void isCommPublishedTest(){
+        comm1.publish();
+        System.out.println(comm1);
+        System.out.println(comm2);
+        Assert.assertTrue("Nu e published", comm1.status == WordPressComments.Status.Approved);
+    }
+
+    public void testPublish(iPublish element){
+        element.publish();
+        Assert.assertTrue("Nu e published", element.isPublished());
+    }
+
+    @Test
+    public void publishCommTest(){
+        testPublish(comm1);
+        testPublish(page1);
+        testPublish(post1);
+    }
+
 }
