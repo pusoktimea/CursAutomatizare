@@ -25,6 +25,9 @@ public class WordpressPageTests {
     static WordPressComments comm2 = new WordPressComments("dolores.pente@altom.ro");
 
 
+
+
+
     @Test
     public void alphabeticalTitlesTest() {
         pageList.add(page1);
@@ -89,6 +92,31 @@ public class WordpressPageTests {
         testPublish(comm1);
         testPublish(page1);
         testPublish(post1);
+    }
+
+    @Test
+    public void isPublic(){
+        PublicVisibility item = new PublicVisibility();
+        Assert.assertTrue(item.isInFeed());
+        Assert.assertTrue(item.canBeSearched());
+    }
+
+    @Test
+    public void isPrivate(){
+        PrivateVisibility item = new PrivateVisibility();
+
+        Assert.assertFalse(item.isInFeed());
+        Assert.assertFalse(item.canBeSearched());
+    }
+
+    @Test
+    public void isPasswdProtected(){
+        String passwd = "test";
+        PasswdProtectedVisibility item = new PasswdProtectedVisibility("test");
+
+        Assert.assertFalse(item.isInFeed());
+        Assert.assertFalse(item.canBeSearched());
+        Assert.assertTrue(item.canView(passwd));
     }
 
 }

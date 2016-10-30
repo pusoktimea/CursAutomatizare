@@ -15,6 +15,7 @@ public class WordPressPage implements iPublish {
     public String title = "g",
             content = "d f f g";
     protected Boolean isVisible = true;
+    public WordpressVisibility visibility;
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     Calendar date_time = Calendar.getInstance();
 
